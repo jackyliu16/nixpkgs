@@ -49,6 +49,8 @@ rec {
     isM68k         = { cpu = { family = "m68k"; }; };
     isS390         = { cpu = { family = "s390"; }; };
     isS390x        = { cpu = { family = "s390"; bits = 64; }; };
+    isLoongArch    = { cpu = { family = "loongson"; }; };
+    isLoongArch64  = { cpu = { family = "loongson"; bits = 64; }; };
     isJavaScript   = { cpu = cpuTypes.javascript; };
 
     is32bit        = { cpu = { bits = 32; }; };
