@@ -86,6 +86,7 @@ in {
   m68k          = filterDoubles predicates.isM68k;
   s390          = filterDoubles predicates.isS390;
   s390x         = filterDoubles predicates.isS390x;
+  loongarch     = filterDoubles predicates.isLoongArch;
   loongarch64   = filterDoubles predicates.isLoongArch64;
   js            = filterDoubles predicates.isJavaScript;
 
