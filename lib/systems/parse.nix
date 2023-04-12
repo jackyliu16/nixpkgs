@@ -131,6 +131,7 @@ rec {
 
     or1k     = { bits = 32; significantByte = bigEndian; family = "or1k"; };
     
+    loongarch =   { bits = 64; significantByte = littleEndian; family = "loongson"; };
     loongarch64 = { bits = 64; significantByte = littleEndian; family = "loongson"; };
     javascript = { bits = 32; significantByte = littleEndian; family = "javascript"; };
   };

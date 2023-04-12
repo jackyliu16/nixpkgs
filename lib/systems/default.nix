@@ -50,6 +50,7 @@ rec {
         else if final.isFreeBSD             then "fblibc"
         else if final.isNetBSD              then "nblibc"
         else if final.isAvr                 then "avrlibc"
+        else if final.isLoongArch           then "loongarch"
         else if final.isLoongArch64         then "loongarch"
         else if final.isNone                then "newlib"
         # TODO(@Ericson2314) think more about other operating systems
@@ -63,6 +64,9 @@ rec {
       linker =
         /**/ if final.useLLVM or false      then "lld"
         else if final.isDarwin              then "cctools"
+        # else if final.isLoongArch           then "lld"
+        # else if final.isLoongArch64         then "lld"
+        # else if final.isLoongArch           then "gold"        
         # "bfd" and "gold" both come from GNU binutils. The existence of Gold
         # is why we use the more obscure "bfd" and not "binutils" for this
         # choice.
@@ -132,11 +136,13 @@ rec {
         else if final.isx86_64 then "x86_64"
         # linux kernel does not distinguish microblaze/microblazeel
         else if final.isMicroBlaze then "microblaze"
-        else if final.isMips32 then "mips"
-        else if final.isMips64 then "mips"    # linux kernel does not distinguish mips32/mips64
-        else if final.isPower then "powerpc"
-        else if final.isRiscV then "riscv"
-        else if final.isS390 then "s390"
+        else if final.isMips32      then "mips"
+        else if final.isMips64      then "mips"    # linux kernel does not distinguish mips32/mips64
+        else if final.isPower       then "powerpc"
+        else if final.isRiscV       then "riscv"
+        else if final.isS390        then "s390"
+        else if final.isLoongArch   then "loongarch"
+        else if final.isLoongArch64 then "loongarch"
         else final.parsed.cpu.name;
 
       qemuArch =
@@ -148,10 +154,12 @@ rec {
 
       # Name used by UEFI for architectures.
       efiArch =
-        if final.isx86_32 then "ia32"
-        else if final.isx86_64 then "x64"
-        else if final.isAarch32 then "arm"
-        else if final.isAarch64 then "aa64"
+        if final.isx86_32           then "ia32"
+        else if final.isx86_64      then "x64"
+        else if final.isAarch32     then "arm"
+        else if final.isAarch64     then "aa64"
+        else if final.isLoongArch   then "loongarch"
+        else if final.isLoongArch64 then "loongarch"
         else final.parsed.cpu.name;
 
       darwinArch = {
