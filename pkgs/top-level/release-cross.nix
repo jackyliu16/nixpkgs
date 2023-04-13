@@ -187,6 +187,7 @@ in
   riscv32 = mapTestOnCross lib.systems.examples.riscv32 linuxCommon;
 
   m68k = mapTestOnCross lib.systems.examples.m68k linuxCommon;
+  loongnix = mapTestOnCross lib.systems.examples.loongnix linuxCommon;
   s390x = mapTestOnCross lib.systems.examples.s390x linuxCommon;
 
   /* (Cross-compiled) Linux on x86 */
