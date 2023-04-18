@@ -66,19 +66,26 @@ let
       runHook preInstall
       
       # from tarball
-      mkdir -p $out
+      mkdir -p $out/bin $out/share/${pname} $out/share/applications
       cp -R "opt" "$out"
       cp -R "usr" "$out"
-      chmod -R g-w "$out"
+      
+      cp $out/opt/weixin/weixin $out/bin/wechat
+      cp -R $out/usr/share/icons/hicolor $out/share/icons
 
-      mkdir -p $out/bin
-      cp -R "$out/opt/weixin/weixin" "$out/bin/wechat"
+      chmod -R g-w "$out"
 
       runHook postInstall
     '';
 
     runtimeDependencies = [
+      
     ];
+
+    # postFixup = ''
+    #   makeWrapper ${electron}/bin/electron $out/bin/${pname} \
+    #     --prefix LD_LIBRARY_PATH : "${stdenv.lib.makeLibraryPath [ stdenv.cc.cc ] }"
+    # '';
   };
 in 
 linux # currently no other versions of the adaptation 
