@@ -64,12 +64,11 @@ rec {
       linker =
         /**/ if final.useLLVM or false      then "lld"
         else if final.isDarwin              then "cctools"
-        # else if final.isLoongArch           then "lld"
-        else if final.isLoongArch64         then "lld"
-        else if final.isLoongArch           then "lld"        
         # "bfd" and "gold" both come from GNU binutils. The existence of Gold
         # is why we use the more obscure "bfd" and not "binutils" for this
-        # choice.
+        # choice. 
+        # The gold is default using as linker by all kernel.execFormat = elf
+        # in development/tools/misc/binutils/default.nix
         else                                     "bfd";
       extensions = rec {
         sharedLibrary =
