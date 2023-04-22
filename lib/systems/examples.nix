@@ -92,7 +92,7 @@ rec {
 
   loongnix = {
     config = "loongarch64-unknown-linux-gnu";
-    gcc = { arch = "loongarch"; };
+    gcc = { arch = "loongarch64"; };
   };
 
   # can execute on 32bit chip

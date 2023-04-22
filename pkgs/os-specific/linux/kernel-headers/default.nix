@@ -29,13 +29,17 @@ let
     destination = "/include/byteswap.h";
   };
 
+  linuxArchMapping = {
+    "loongarch64" = "loongarch";
+  };
+
   makeLinuxHeaders = { src, version, patches ? [] }: stdenvNoCC.mkDerivation {
     inherit src;
 
     pname = "linux-headers";
     inherit version;
 
-    ARCH = stdenvNoCC.hostPlatform.linuxArch;
+    ARCH = linuxArchMapping."${stdenvNoCC.hostPlatform.linuxArch}" or stdenvNoCC.hostPlatform.linuxArch;
 
     strictDeps = true;
     enableParallelBuilding = true;

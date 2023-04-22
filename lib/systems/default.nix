@@ -140,8 +140,8 @@ rec {
         else if final.isPower       then "powerpc"
         else if final.isRiscV       then "riscv"
         else if final.isS390        then "s390"
-        else if final.isLoongArch   then "loongarch"
-        else if final.isLoongArch64 then "loongarch"
+        else if final.isLoongArch   then "loongarch64"
+        else if final.isLoongArch64 then "loongarch64"
         else final.parsed.cpu.name;
 
       qemuArch =
