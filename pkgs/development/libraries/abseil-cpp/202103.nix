@@ -25,6 +25,12 @@ stdenv.mkDerivation rec {
       url = "https://github.com/abseil/abseil-cpp/commit/5bfa70c75e621c5d5ec095c8c4c0c050dcb2957e.patch";
       sha256 = "0nhjxqfxpi2pkfinnqvd5m4npf9l1kg39mjx9l3087ajhadaywl5";
     })
+  ] ++ lib.optionals stdenv.hostPlatform.isLoongArch64 [
+    # https://github.com/abseil/abseil-cpp/pull/1110
+    (fetchpatch {
+      url = "https://github.com/abseil/abseil-cpp/pull/1110.patch";
+      sha256 = "sha256-ayY/aV/xWOdEyFSDqV7B5WDGvZ0ASr/aeBeYwP5RZVc=";
+    })
   ];
 
   cmakeFlags = [
